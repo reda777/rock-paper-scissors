@@ -1,14 +1,27 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <script src="first.js" defer></script>
+        <link rel="stylesheet" href="style.css">
+        <script src="scripte.js" defer></script>
+        <title>Rock Paper Scissors</title>
     </head>
     <body>
-        <button value="0">Rock</button>
-        <button value="1">Paper</button>
-        <button value="2">Scissors</button>
-        <div class="results"></div>
-        <div class="score"></div>
-        <div class="winner"></div>
+        <div class="buttons-interface">
+            <div class="buttons">
+                <a href="javascript:void(0)" id="0">Rock</a>
+                <a href="javascript:void(0)" id="1">Paper</a>
+                <a href="javascript:void(0)" id="2">Scissors</a>
+            </div>
+
+            <div class="interface">
+                <div class="results">
+                    <img class="imgPlayer" src="images/question-mark.png" alt="">
+                    <img class="imgComputer" src="images/question-mark.png" alt="">
+                </div>
+                <div class="score">
+                    YOU&nbsp;&nbsp;&nbsp;? - ?&nbsp;&nbsp;&nbsp;CPU
+                </div>
+            </div>
+        </div>
     </body>
 </html>

@@ -1,34 +1,49 @@
-const buttons=document.querySelectorAll('button');
+const buttons=document.querySelectorAll('a');
 buttons.forEach(button => {
     button.addEventListener('click',game);
 });
-const divRes=document.querySelector('.results');
-const divSco=document.querySelector('.score');
-const divWin=document.querySelector('.winner');
 
+const divRes=document.querySelector('.results');
+const divBut=document.querySelector('.buttons');
+const divSco=document.querySelector('.score');
+const img1=document.querySelector('.imgPlayer');
+const img2=document.querySelector('.imgComputer');
 let playerScore=0;
 let computerScore=0;
 function game(e){
-    let playerSelection=Number(e.target.value);
+    let playerSelection=Number(e.target.id);
     let computerSelection=computerPlay();
     let roundResult=playRound(playerSelection,computerSelection);
     if(roundResult==1){
         playerScore++;
-        divRes.textContent='You win! '+translate(playerSelection)+' beats '+translate(computerSelection);
+        img1.src=translate(playerSelection);
+        img2.src=translate(computerSelection);
     }
     else if(roundResult==2){
         computerScore++;
-        divRes.textContent='You lose! '+translate(computerSelection)+' beats '+translate(playerSelection);
+        img1.src=translate(playerSelection);
+        img2.src=translate(computerSelection);
     }
     else if(roundResult==0){
-        divRes.textContent='Draw '+translate(playerSelection)+' : '+translate(computerSelection);
+        img1.src=translate(playerSelection);
+        img2.src=translate(computerSelection);
     }
-    divSco.textContent='score is '+playerScore+' - '+computerScore;                  
+    divSco.textContent='YOU\xa0\xa0\xa0'+playerScore+' - '+computerScore+'\xa0\xa0\xa0CPU';                  
     if(playerScore==5 || computerScore==5){
-        divWin.textContent+=(computerScore==playerScore)?' draw':(playerScore==5)?' player won':' computer won';
+        divRes.style.fontSize="50px";
+        divRes.textContent=(computerScore==playerScore)?' DRAW!':(playerScore==5)?' YOU WON':' YOU LOST';
+        restart();
     }
 }
 
+function restart(){
+    divBut.innerHTML="";
+    const linkA=document.createElement('a');
+    linkA.textContent="Restart";
+    linkA.setAttribute('href', '#');
+    divBut.appendChild(linkA);
+    linkA.addEventListener('click',()=>window.location.reload());
+}
 //result of round
 function playRound(playerSelection,computerSelection){
     if(playerSelection==computerSelection)
@@ -53,9 +68,9 @@ function computerPlay(){
 function translate(value){
     if(typeof value==='number')
     switch(value){
-            case 0:return 'Rock'; break;
-            case 1:return 'Paper'; break;
-            case 2:return 'Scissors'; break;
+            case 0:return 'images/rock.png'; break;
+            case 1:return 'images/paper.png'; break;
+            case 2:return 'images/scissors.png'; break;
         }
         if(typeof value==='string'){
         return value.localeCompare('rock','en',{ sensitivity: 'base' })==0 ? 0: 
