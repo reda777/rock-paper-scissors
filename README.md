@@ -1,1 +1,1 @@
-rock paper scissors game using javascript rough edition
+simple rock paper scissors browser game using javascript
